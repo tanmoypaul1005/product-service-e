@@ -45,7 +45,7 @@ export class ProductController {
 
     channel.ack(originalMessage);
 
-    return product;.
-    
+    return product;
+
   }
 }
