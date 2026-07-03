@@ -1,15 +1,17 @@
-import { IsInt, IsPositive, IsOptional } from 'class-validator';
+
+import { IsInt, IsPositive } from 'class-validator';
 
 export class AddToCartDto {
+
   @IsInt()
   @IsPositive()
   productId: number;
 
+
   @IsInt()
   @IsPositive()
-  userId: number;
+  userId: number;  // <-- কোনো ? চিহ্ন থাকা যাবে না
 
-  @IsOptional()
   @IsInt()
   @IsPositive()
   quantity?: number;
