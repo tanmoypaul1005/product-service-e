@@ -36,4 +36,16 @@ export class ProductController {
 
     return products;
   }
+
+  @MessagePattern('product.getById')
+  async getProductByIdFromQueue(@Payload() id: number, @Ctx() context: RmqContext) {
+    const product =await this.productService.getProductById(id);
+    const channel= context.getChannelRef();
+    const originalMessage= context.getMessage();
+
+    channel.ack(originalMessage);
+
+    return product;.
+    
+  }
 }

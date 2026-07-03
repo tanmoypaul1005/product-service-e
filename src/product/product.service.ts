@@ -22,4 +22,10 @@ export class ProductService {
   async getAllProducts() {
     return this.prisma.product.findMany();
   }
+
+  async getProductById(id: number) {
+    return this.prisma.product.findUnique({
+      where: { id },
+    });
+  }
 }
