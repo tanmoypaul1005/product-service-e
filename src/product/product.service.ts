@@ -23,9 +23,10 @@ export class ProductService {
     return this.prisma.product.findMany();
   }
 
-  async getProductById(id: number) {
-    return this.prisma.product.findUnique({
-      where: { id },
-    });
-  }
+async getProductById(id: number) {
+  return this.prisma.product.findUnique({
+    where: { id: Number(id) },
+  });
+}
+
 }
