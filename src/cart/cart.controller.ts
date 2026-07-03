@@ -1,5 +1,12 @@
 import { Controller } from '@nestjs/common';
 import { CartService } from './cart.service';
+import { AddToCartDto } from './dto/add-to-cart.dto';
+import {
+  Ctx,
+  MessagePattern,
+  Payload,
+  RmqContext,
+} from '@nestjs/microservices';
 
 @Controller('cart')
 export class CartController {
