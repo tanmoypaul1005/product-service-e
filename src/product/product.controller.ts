@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import {
   Ctx,
   MessagePattern,
@@ -11,6 +11,16 @@ import { ProductService } from './product.service';
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
+
+  @Post()
+  async createProduct(@Body() createProductDto: CreateProductDto) {
+    return this.productService.createProduct(createProductDto);
+  }
+
+  @Get()
+  async getAllProducts() {
+    return this.productService.getAllProducts();
+  }
 
   @MessagePattern('product.create')
   async createProductFromQueue(
