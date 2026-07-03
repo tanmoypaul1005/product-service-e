@@ -14,3 +14,14 @@ model Product {
   stock     Int      @default(0)
   createdAt DateTime @default(now())
 }
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId]) // একই user একই product duplicate row হিসেবে যোগ করতে পারবে না
+}
