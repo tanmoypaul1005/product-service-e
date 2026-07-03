@@ -7,11 +7,6 @@ import { ProductService } from './product.service';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post()
-  async createProduct(@Body() createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto);
-  }
-
   @MessagePattern('product.create')
   async createProductFromQueue(
     @Payload() createProductDto: CreateProductDto,
