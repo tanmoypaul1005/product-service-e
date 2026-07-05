@@ -5,8 +5,8 @@ import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {
-  
-  constructor(private readonly prisma: PrismaService) {}
+
+  constructor(private readonly prisma: PrismaService) { }
 
   async createProduct(createProductDto: CreateProductDto) {
     const { name, price, stock } = createProductDto;
@@ -24,10 +24,10 @@ export class ProductService {
     return this.prisma.product.findMany();
   }
 
-async getProductById(id: number) {
-  return this.prisma.product.findUnique({
-    where: { id: Number(id) },
-  });
-}
+  async getProductById(id: number) {
+    return this.prisma.product.findUnique({
+      where: { id: Number(id) },
+    });
+  }
 
 }
