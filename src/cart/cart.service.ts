@@ -8,6 +8,7 @@ export class CartService {
   constructor(private readonly prisma: PrismaService) {}
 
   async addToCart(dto: AddToCartDto) {
+    
     const quantity = dto.quantity ?? 1;
 
     const existingCartItem = await this.prisma.cart.findFirst({
@@ -32,5 +33,5 @@ export class CartService {
       },
     });
   }
-  
+
 }
