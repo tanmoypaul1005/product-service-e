@@ -5,6 +5,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {
+  
   constructor(private readonly prisma: PrismaService) {}
 
   async createProduct(createProductDto: CreateProductDto) {
