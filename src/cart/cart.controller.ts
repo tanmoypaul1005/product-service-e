@@ -23,6 +23,13 @@ export class CartController {
   }
 
   @MessagePattern('cart.getCartItems')
-  async getCartItems(@Payload() userId: string, @Ctx() context: RmqContext) {}
+  async getCartItems(@Payload() userId: string, @Ctx() context: RmqContext) {
+    const cartItems = await this.cartService.getCartItems(userId);
+
+    const channel = context.getChannelRef();
+    const originalMessage = context.getMessage();
+    channel.ack(originalMessage);
+    return cartItems;
+  }
 
 }
