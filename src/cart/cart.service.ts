@@ -5,10 +5,10 @@ import { AddToCartDto } from './dto/add-to-cart.dto';
 @Injectable()
 export class CartService {
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async addToCart(dto: AddToCartDto) {
-    
+
     const quantity = dto.quantity ?? 1;
 
     const existingCartItem = await this.prisma.cart.findFirst({
@@ -31,6 +31,12 @@ export class CartService {
         productId: dto.productId,
         quantity,
       },
+    });
+  }
+
+  async getCartItems(userId: string) {
+    return this.prisma.cart.findMany({
+      where: { userId: Number(userId) },
     });
   }
 
