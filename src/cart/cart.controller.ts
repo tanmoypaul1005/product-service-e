@@ -22,4 +22,7 @@ export class CartController {
     return cartItem;
   }
 
+  @MessagePattern('cart.getCartItems')
+  async getCartItems(@Payload() userId: string, @Ctx() context: RmqContext) {}
+
 }
