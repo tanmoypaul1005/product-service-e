@@ -8,4 +8,8 @@ export class CategoryService {
     async getAllCategories() {
         return this.prisma.category.findMany({});
     }
+
+    async createCategory(data: { name: string }) {
+        return this.prisma.category.create({ data });
+    }
 }

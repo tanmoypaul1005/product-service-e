@@ -14,4 +14,13 @@ export class CategoryController {
         channel.ack(originalMessage);
         return categories;
     }
+
+    @MessagePattern('category.createCategory')
+    async createCategory(data: { name: string }, @Ctx() context: RmqContext) {
+        const category = await this.categoryService.createCategory(data);
+        const channel = context.getChannelRef();
+        const originalMessage = context.getMessage();
+        channel.ack(originalMessage);
+        return category;
+    }
 }
