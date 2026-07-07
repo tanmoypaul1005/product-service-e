@@ -25,3 +25,8 @@ model Cart {
 
   @@unique([userId, productId]) // একই user একই product duplicate row হিসেবে যোগ করতে পারবে না
 }
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+}
