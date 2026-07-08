@@ -10,6 +10,6 @@ export class CategoryService {
     }
 
     async createCategory(data: { name: string }) {
-        return this.prisma.category.create({ data });
+        return this.prisma.category.create({ data: { name: data.name } });
     }
 }
