@@ -4,6 +4,7 @@ import { Ctx, MessagePattern, RmqContext } from '@nestjs/microservices';
 
 @Controller('category')
 export class CategoryController {
+    
     constructor(private readonly categoryService: CategoryService) { }
 
     @MessagePattern('category.getAllCategories')
