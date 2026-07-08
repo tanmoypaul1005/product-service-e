@@ -8,11 +8,19 @@ datasource db {
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
-  name      String
-  price     Decimal  @db.Decimal(10, 2)
-  stock     Int      @default(0)
-  createdAt DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  name       String
+  price      Decimal  @db.Decimal(10, 2)
+  stock      Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  brandId    String?
+  brand      Brand?    @relation(fields: [brandId], references: [id])
+
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  carts      Cart[]
 }
 
 model Cart {
@@ -23,10 +31,31 @@ model Cart {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  product   Product  @relation(fields: [productId], references: [id])
+
   @@unique([userId, productId]) // একই user একই product duplicate row হিসেবে যোগ করতে পারবে না
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String
+  id       Int       @id @default(autoincrement())
+  name     String
+
+  products Product[]
 }
+
+model Brand {
+  id          String    @id @default(uuid())
+  name        String    @unique @db.VarChar(100)
+  slug        String    @unique @db.VarChar(150)
+  description String?   @db.Text
+  logoUrl     String?   @db.VarChar(255)
+  isActive    Boolean   @default(true)
+
+  products    Product[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("brands")
+}
+
