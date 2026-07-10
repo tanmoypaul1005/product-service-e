@@ -4,6 +4,7 @@ import { CreateBrandDto } from './dto/create.brand.dto';
 
 @Injectable()
 export class BrandService {
+    
     constructor(private readonly prisma:PrismaService) { }
 
     async createBrand(data: CreateBrandDto) {
