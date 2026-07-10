@@ -5,6 +5,7 @@ import { CreateBrandDto } from './dto/create.brand.dto';
 
 @Controller('brand')
 export class BrandController {
+    
     constructor(private readonly brandService: BrandService) { }
 
     @MessagePattern('brand.createBrand')
