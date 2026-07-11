@@ -38,5 +38,4 @@ export class CartService {
       where: { userId: Number(userId) },
     });
   }
-
 }
