@@ -31,5 +31,4 @@ export class CartController {
     channel.ack(originalMessage);
     return cartItems;
   }
-
 }
