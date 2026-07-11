@@ -4,7 +4,6 @@ import { AddToCartDto } from './dto/add-to-cart.dto';
 
 @Injectable()
 export class CartService {
-
   constructor(private readonly prisma: PrismaService) { }
 
   async addToCart(dto: AddToCartDto) {
